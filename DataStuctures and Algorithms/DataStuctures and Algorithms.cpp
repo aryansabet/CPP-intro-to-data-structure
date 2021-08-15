@@ -9,7 +9,7 @@
 using std::cout; 
 
 
-std::ostream& operator<<(std::ostream& os, const Array& a) {
+std::ostream& operator<<(std::ostream& os, const Array<int>& a) {
 	// Overloading insertion operator for array class
 	// os : Output stream (print target) (generic output stream object)
 	//      which enables you even fine to work with other buffers
@@ -53,14 +53,14 @@ int main()
     //clang++ -std=c++14 -fsanitize=address -g -o1 Array1.cpp
     //to spot the memory leak bug
     try {
-        Array a{ 3 };
+        Array<int> a{ 3 };
         
         for (int i = 0; i < a.Size(); i++)
         {
             a[i] = i + 1;
         }
         
-		Array b;
+		Array<int> b;
 		cout << "Array a: " << a << '\n';
 		cout << "Array b: " << b << '\n';
 

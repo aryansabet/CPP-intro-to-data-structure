@@ -1,14 +1,20 @@
 #pragma once
+//Header Guard
+
+
 #include <iostream>
+#include <utility>
 #include "IndexOutOfBoundsException.h"
 
+template <typename T>
 class Array
 {
-	friend void swap(Array& a, Array& b) {
+	friend void swap(Array& a, Array& b) noexcept{
 		using std::swap;
 		//Memberwise swap
 		swap(a.m_ptr, b.m_ptr);
 		swap(a.m_size, b.m_size);
+		//Remember to make it noexcept
 	}
 private:
 	//Direct Member Initialization C++11
@@ -27,7 +33,7 @@ public: // Interface between this data structures with users
 	explicit Array(int size) { 
 		//Use explicit keyword with one-argument constructors to make your code safer
 		if (size != 0) {
-			m_ptr = new int[size] {};
+			m_ptr = new T[size] {};
 			//{} for Zero-init instead of some Garbage initial values
 			// safe init
 			m_size = size;
@@ -47,7 +53,7 @@ public: // Interface between this data structures with users
 	Array(const Array& rhs) {
 		if (!rhs.IsEmpty()) {
 			m_size = rhs.m_size;
-			m_ptr = new int[m_size] {};
+			m_ptr = new T[m_size] {};
 
 			for (int i = 0; i < m_size; i++)
 			{
