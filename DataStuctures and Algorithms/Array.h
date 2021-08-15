@@ -57,6 +57,27 @@ public: // Interface between this data structures with users
 
 	}
 
+	// Move Semantics : transfer without copying 
+	// to avoid expensive copies
+	// better performance when returning from function
+	// Move constructor : enables move semantics
+	// Moving Arrays : Re-assign pointers (steal the date)
+	// no memory allocation
+	// just changing the ownership of pointer from source to destination
+	Array(Array&& source) {
+		// Array&& : R-VALUE REFERENCE 
+		// Temporary object: Can safely steal the data from it
+
+		//Transfer ownership from source
+		m_ptr = source.m_ptr;
+		m_size = source.m_size;
+
+		//Clear source : safe code
+		source.m_ptr = nullptr;
+		source.m_size = 0;
+		//fast & cheap! no memory alloc. no deep copy.
+	}
+
 	~Array() {
 		delete[] m_ptr;
 		// what if array was empty?
