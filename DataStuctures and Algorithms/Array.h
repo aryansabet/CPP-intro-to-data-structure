@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 class Array
 {
 private:
@@ -40,6 +41,11 @@ public: // Interface between this data structures with users
 		// Allowing external access to the array content
 		// return with refrence to avoid int main() compilation error on line 22
 		// (a[0] = 10;)(expression is not assignable)
+		return m_ptr[index];
+	}
+
+	int operator[](int index) const {
+		//Granting Read-only Access to Array Elements
 		return m_ptr[index];
 	}
 };
