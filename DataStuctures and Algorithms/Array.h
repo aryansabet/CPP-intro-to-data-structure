@@ -28,6 +28,29 @@ public: // Interface between this data structures with users
 		}
 	}
 
+	// Copy initialization : using Copy Constructor 
+	// default Copy Constructor : member-wise Copy (simply copying peer to peer members of a to b)
+	// that will copy the same address to pointer member variables : Shallow Copy
+	// Modifications to b are reflected to a - here is the Bug!
+	// When object b goes out of scope in main function, delete[] b.m_ptr destructor will do the job
+	// but!! after a goes out of scope, delete[] a.m_ptr will try to free the memory which is already free.
+	// Double Delete Bug - Subtle memory bugs with shallow copies
+	// solution 1:side steping the problem with deleting Compiler-generated copy constructor
+	// Array(const Array& lhs) = delete;
+	// solution 2 : deep copy -distinct arrays - clone & make new independent array
+	Array(const Array& rhs) {
+		if (!rhs.IsEmpty()) {
+			m_size = rhs.m_size;
+			m_ptr = new int[m_size] {};
+
+			for (int i = 0; i < m_size; i++)
+			{
+				m_ptr[i] = rhs.m_ptr[i];
+			}
+		}
+
+	}
+
 	~Array() {
 		delete[] m_ptr;
 		// what if array was empty?
@@ -67,5 +90,7 @@ public: // Interface between this data structures with users
 			
 		return m_ptr[index];
 	}
+
+
 };
 
