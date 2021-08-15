@@ -5,9 +5,41 @@
 #include <cassert>
 #include <exception>
 
+
+using std::cout; 
+
+
+std::ostream& operator<<(std::ostream& os, const Array& a) {
+	// Overloading insertion operator for array class
+	// os : Output stream (print target) (generic output stream object)
+	//      which enables you even fine to work with other buffers
+	//		for example output file stream or clog & cerr
+	// a  : object to print (source)
+	// return type ostream enables chained calls to insertion operator overloads
+	// which is extensible to your own classes & follow same patternas this
+	// (cout<<age<<name<<...;int,string)
+
+	// here we need to Format Array
+
+	os << "[";
+	int indexOfLastElement = a.Size() - 1;
+	for (int i = 0; i < indexOfLastElement; i++)
+	{
+		os << a[i] << ", ";
+	}
+
+	//now printing last element
+	os << a[indexOfLastElement];
+
+	os << "]";
+	return os;
+	// but what if we use m_ptr[i] instead of a[i] for perfectionism to reduce overhead?
+	// then we need to friend this function to the class
+}
+
 int main()
 {
-    using std::cout;
+    
 
     //Array a{};
     //assert(a.IsEmpty());
@@ -20,8 +52,12 @@ int main()
     //to spot the memory leak bug
     try {
         Array a{ 3 };
-        a[0] = 10;
-        //cout << a[0];
+        
+        for (int i = 0; i < a.Size(); i++)
+        {
+            a[i] = i + 1;
+        }
+        cout << "Array a: " << a;
     }
     catch (const IndexOutOfBoundsException& e) {
         cout << "\n *** ERROR: Invalid index!! \n";
