@@ -57,7 +57,18 @@ int main()
         {
             a[i] = i + 1;
         }
-        cout << "Array a: " << a;
+        cout << "Array a: " << a << '\n';
+		Array b = a;
+		cout << "Array a: " << a << '\n';
+		cout << "Array b: " << b << '\n';
+
+		b[0] = 80;
+
+		cout << "Array a: " << a << '\n';
+		cout << "Array b: " << b << '\n';
+
+
+
     }
     catch (const IndexOutOfBoundsException& e) {
         cout << "\n *** ERROR: Invalid index!! \n";
