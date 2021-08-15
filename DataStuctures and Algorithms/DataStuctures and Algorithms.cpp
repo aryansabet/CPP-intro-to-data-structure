@@ -11,8 +11,10 @@ int main()
 
     Array b{ 10 };
     assert(!b.IsEmpty());
-
-
+    //ASan
+    //address sanitizer
+    //clang++ -std=c++14 -fsanitize=address -g -o1 Array1.cpp
+    //to spot the memory leak bug
 
 }
 

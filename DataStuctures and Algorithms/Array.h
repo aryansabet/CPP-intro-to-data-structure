@@ -18,7 +18,13 @@ public: // Interface between this data structures with users
 		}
 	}
 
-	
+	~Array() {
+		delete[] m_ptr;
+		// what if array was empty?
+		// delete[] nullptr is safe
+		// delete[] is releasing Array hole memory block
+		
+	}
 
 	int Size() const {
 		// const is to don't modify the internal state of array object
