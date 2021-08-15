@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Array.h"
 #include <cassert>
+#include <exception>
 
 int main()
 {
@@ -17,11 +18,14 @@ int main()
     //address sanitizer
     //clang++ -std=c++14 -fsanitize=address -g -o1 Array1.cpp
     //to spot the memory leak bug
-
-    Array a{ 3 };
-    a[0] = 10;
-    cout << a[0];
-
+    try {
+        Array a{ 3 };
+        a[0] = 10;
+        //cout << a[0];
+    }
+    catch (const IndexOutOfBoundsException& e) {
+        cout << "\n *** ERROR: Invalid index!! \n";
+    }
 }
 
 
