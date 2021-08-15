@@ -22,15 +22,17 @@ std::ostream& operator<<(std::ostream& os, const Array& a) {
 	// here we need to Format Array
 
 	os << "[";
-	int indexOfLastElement = a.Size() - 1;
-	for (int i = 0; i < indexOfLastElement; i++)
+	if (a.Size() != 0)
 	{
-		os << a[i] << ", ";
+		int indexOfLastElement = a.Size() - 1;
+		for (int i = 0; i < indexOfLastElement; i++)
+		{
+			os << a[i] << ", ";
+		}
+
+		//now printing last element
+		os << a[indexOfLastElement];
 	}
-
-	//now printing last element
-	os << a[indexOfLastElement];
-
 	os << "]";
 	return os;
 	// but what if we use m_ptr[i] instead of a[i] for perfectionism to reduce overhead?
@@ -57,12 +59,12 @@ int main()
         {
             a[i] = i + 1;
         }
-        cout << "Array a: " << a << '\n';
-		Array b = a;
+        
+		Array b;
 		cout << "Array a: " << a << '\n';
 		cout << "Array b: " << b << '\n';
 
-		b[0] = 80;
+		b = a;
 
 		cout << "Array a: " << a << '\n';
 		cout << "Array b: " << b << '\n';

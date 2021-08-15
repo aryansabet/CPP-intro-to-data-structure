@@ -4,6 +4,12 @@
 
 class Array
 {
+	friend void swap(Array& a, Array& b) {
+		using std::swap;
+		//Memberwise swap
+		swap(a.m_ptr, b.m_ptr);
+		swap(a.m_size, b.m_size);
+	}
 private:
 	//Direct Member Initialization C++11
 	int* m_ptr{ nullptr };
@@ -91,6 +97,27 @@ public: // Interface between this data structures with users
 		return m_ptr[index];
 	}
 
+	Array& operator=(Array rhs) {
+		//Array& operator=(const Array& rhs) {
+		// Prevent self-assignment (x = x)
+		//if (&rhs != this) {}
+			//1 - do the copy
+			//2 - Don't forget to release the previous array block
+			//3 - Implement proper deep-copy form rhs to this
+			//but ...
+			 
+			// Copy-and-swap Idiom
+			// we need to Deep Copy: Reuse Copy constructor
+			// we copy a to b. already reached copy part of copy-and-swap
+			// the we swap it to t. there is the swap part.
+			// after that we need to destruct the b.
+			// so we need : 1- copy constructor: it happens cause used pass-by-value argument
+			//              2- swap function (memberwise swap)
+			//              3- destructor : implicitly called when =function reached out of scope
+		
+		swap(*this, rhs);
+		return *this;
+	}//destructor of Array rhs called
 
 };
 
