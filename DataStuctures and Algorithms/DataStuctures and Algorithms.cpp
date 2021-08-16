@@ -13,6 +13,9 @@ constexpr int kNotFound = -1;
 // const int with compile time initialization 
 // why -1?
 int LinearSearch(int element, const int* v, int size) {
+	// Complexity:
+	//	O(N)
+	//	which is so bad in Asymptotic Analysis.
 	// v : observing pointer
 	for (int i = 0; i < size; i++)
 	{
@@ -25,6 +28,9 @@ int LinearSearch(int element, const int* v, int size) {
 }
 
 int BinarySearch(int element, const int* v, int size) {
+	// Complexity:
+	//	progressive cut the space of problem(array) to half
+	//	O(log(N))
 	// Requirement of BinarySearch : array must me sorted.
 	// Active search region:
 	int left = 0;
