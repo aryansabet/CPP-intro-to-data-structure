@@ -4,10 +4,25 @@
 #include "Array.h"
 #include <cassert>
 #include <exception>
-
+#include <vector>
 
 using std::cout; 
 
+
+constexpr int kNotFound = -1;
+// const int with compile time initialization 
+// why -1?
+int LinearSearch(int element, const int* v, int size) {
+	// v : observing pointer
+	for (int i = 0; i < size; i++)
+	{
+		if (v[i] == element)
+		{
+			return i;
+		}
+	}
+	return kNotFound;
+}
 
 std::ostream& operator<<(std::ostream& os, const Array<int>& a) {
 	// Overloading insertion operator for array class
@@ -52,29 +67,37 @@ int main()
     //address sanitizer
     //clang++ -std=c++14 -fsanitize=address -g -o1 Array1.cpp
     //to spot the memory leak bug
-    try {
-        Array<int> a{ 3 };
-        
-        for (int i = 0; i < a.Size(); i++)
-        {
-            a[i] = i + 1;
-        }
-        
-		Array<int> b;
-		cout << "Array a: " << a << '\n';
-		cout << "Array b: " << b << '\n';
+  //  try {
+  //      Array<int> a{ 3 };
+  //      
+  //      for (int i = 0; i < a.Size(); i++)
+  //      {
+  //          a[i] = i + 1;
+  //      }
+  //      
+		//Array<int> b;
+		//cout << "Array a: " << a << '\n';
+		//cout << "Array b: " << b << '\n';
 
-		b = a;
+		//b = a;
 
-		cout << "Array a: " << a << '\n';
-		cout << "Array b: " << b << '\n';
+		//cout << "Array a: " << a << '\n';
+		//cout << "Array b: " << b << '\n';
 
 
 
-    }
-    catch (const IndexOutOfBoundsException& e) {
-        cout << "\n *** ERROR: Invalid index!! \n";
-    }
+  //  }
+  //  catch (const IndexOutOfBoundsException& e) {
+  //      cout << "\n *** ERROR: Invalid index!! \n";
+  //  }
+	std::vector<int> v{ 11,22,33,44,55 };
+	int pos = LinearSearch(44, v.data(), v.size());
+	if( pos == kNotFound){
+		cout << "Element not found!\n";
+	}
+	else {
+		cout << "index of Element is " << pos << ".\n";
+	}
 }
 
 
