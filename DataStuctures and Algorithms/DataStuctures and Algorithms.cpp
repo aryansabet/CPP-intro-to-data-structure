@@ -24,6 +24,34 @@ int LinearSearch(int element, const int* v, int size) {
 	return kNotFound;
 }
 
+int BinarySearch(int element, const int* v, int size) {
+	// Requirement of BinarySearch : array must me sorted.
+	// Active search region:
+	int left = 0;
+	int right = size - 1;
+	//what if we don't use (-1): subtle bug 
+	//initial to search the hole input array
+
+	while (left <= right) { //why?
+		int middle = (left + right) / 2;
+		//the inital array is halved at each iteration
+		//loop with divide the search domain in half at each step
+
+		if (v[middle] == element) {
+			return middle;
+		}
+		else if (v[middle] < element) {
+			// search in right half
+			left = middle + 1;
+		}
+		else if (v[middle] > element) {
+			// search in left half
+			right = middle - 1;
+		}
+	}
+
+	return kNotFound;
+}
 std::ostream& operator<<(std::ostream& os, const Array<int>& a) {
 	// Overloading insertion operator for array class
 	// os : Output stream (print target) (generic output stream object)
@@ -91,8 +119,9 @@ int main()
   //      cout << "\n *** ERROR: Invalid index!! \n";
   //  }
 	std::vector<int> v{ 11,22,33,44,55 };
-	int pos = LinearSearch(44, v.data(), v.size());
-	if( pos == kNotFound){
+	//int pos = LinearSearch(44, v.data(), v.size());
+	int pos = BinarySearch(44, v.data(), v.size());
+	if (pos == kNotFound){
 		cout << "Element not found!\n";
 	}
 	else {
