@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="IndexOutOfBoundsException.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackOverflowException.h" />
   </ItemGroup>

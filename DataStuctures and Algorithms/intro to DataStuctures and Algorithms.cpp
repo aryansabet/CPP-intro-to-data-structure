@@ -6,6 +6,8 @@
 #include <exception>
 #include <vector>
 #include "Stack.h"
+#include "List.h"
+
 using std::cout; 
 
 
@@ -134,17 +136,39 @@ int main()
 	//	cout << "index of Element is " << pos << ".\n";
 	//}
 
-	Stack<int> myStack{ 10 };
-	assert(myStack.IsEmpty());
-	assert(myStack.MaxSize() == 10);
+	//Stack<int> myStack{ 10 };
+	//assert(myStack.IsEmpty());
+	//assert(myStack.MaxSize() == 10);
 
-	myStack.Push(10);
-	myStack.Push(9);
-	assert(myStack.Size() == 2);
-	cout << myStack << std::endl;
-	myStack.Pop();
-	cout << myStack << std::endl;
+	//myStack.Push(10);
+	//myStack.Push(9);
+	//assert(myStack.Size() == 2);
+	//cout << myStack << std::endl;
+	//myStack.Pop();
+	//cout << myStack << std::endl;
 	
+	List<int> l{};
+	cout << " Created an empty list: " << l << "\n\n";
+
+	cout << " Inserting some elements...\n";
+	l.InsertHead(10);
+	l.InsertHead(64);
+	l.InsertHead(80);
+	l.InsertHead(77);
+	cout << " Current list: " << l << "\n\n";
+
+	cout << " Inserting a new element (500) after node with value 64.\n";
+	auto pos = l.Find(64);
+	l.InsertAfter(pos, 500);
+	cout << " Current list: " << l << "\n\n";
+
+	cout << " Removing current head.\n";
+	l.RemoveHead();
+	cout << " Current list: " << l << "\n\n";
+
+	cout << " Clearing the whole list.\n";
+	l.Clear();
+	cout << " Current list: " << l << "\n\n";
 }
 
 
