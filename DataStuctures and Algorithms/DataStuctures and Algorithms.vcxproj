@@ -24,6 +24,7 @@
     <ProjectGuid>{44e000c5-f8a0-478f-bfe2-5f888cd3e6a9}</ProjectGuid>
     <RootNamespace>DataStucturesandAlgorithms</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>intro to DataStuctures and Algorithms</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,7 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DataStuctures and Algorithms.cpp" />
+    <ClCompile Include="intro to DataStuctures and Algorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
