@@ -5,7 +5,7 @@
 #include <cassert>
 #include <exception>
 #include <vector>
-
+#include "Stack.h"
 using std::cout; 
 
 
@@ -71,7 +71,7 @@ std::ostream& operator<<(std::ostream& os, const Array<int>& a) {
 	// here we need to Format Array
 
 	os << "[";
-	if (a.Size() != 0)
+	if (! a.IsEmpty())
 	{
 		int indexOfLastElement = a.Size() - 1;
 		for (int i = 0; i < indexOfLastElement; i++)
@@ -124,15 +124,27 @@ int main()
   //  catch (const IndexOutOfBoundsException& e) {
   //      cout << "\n *** ERROR: Invalid index!! \n";
   //  }
-	std::vector<int> v{ 11,22,33,44,55 };
-	//int pos = LinearSearch(44, v.data(), v.size());
-	int pos = BinarySearch(44, v.data(), v.size());
-	if (pos == kNotFound){
-		cout << "Element not found!\n";
-	}
-	else {
-		cout << "index of Element is " << pos << ".\n";
-	}
+	//std::vector<int> v{ 11,22,33,44,55 };
+	////int pos = LinearSearch(44, v.data(), v.size());
+	//int pos = BinarySearch(44, v.data(), v.size());
+	//if (pos == kNotFound){
+	//	cout << "Element not found!\n";
+	//}
+	//else {
+	//	cout << "index of Element is " << pos << ".\n";
+	//}
+
+	Stack<int> myStack{ 10 };
+	assert(myStack.IsEmpty());
+	assert(myStack.MaxSize() == 10);
+
+	myStack.Push(10);
+	myStack.Push(9);
+	assert(myStack.Size() == 2);
+	cout << myStack << std::endl;
+	myStack.Pop();
+	cout << myStack << std::endl;
+	
 }
 
 
