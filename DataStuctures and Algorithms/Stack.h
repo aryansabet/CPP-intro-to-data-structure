@@ -2,6 +2,7 @@
 //Header Guard
 
 #include <ostream>
+#include "StackOverflowException.h"
 #include "Array.h"
 
 // Stack Metaphor
@@ -27,6 +28,8 @@
 //
 //		*** Random access is not allowed ***
 //			you can only access top element (LIFO)
+
+
 
 template <typename T>
 class Stack
@@ -60,12 +63,18 @@ public:
 	//  2- Array Class already has destructor  & copy constructor
 	//  3- Default compiler-generated Stack's destructor invokes Array's destructor. same for copy ctor
 	void Push(const T& element)
-	{
+	{	
+		// in case of pathological conditions, better throwing an exception than execute bogus code
+		if (Size() >= MaxSize())
+		{
+			throw StackOverflowException{};
+		}
 		m_top++;
 		m_array[m_top] = element;
 	}
 
 	T Pop() {
+		// NOTE : We should add condition to check preventing underflow 
 		T topElement = m_array[m_top];
 		m_top--;
 		return topElement;
